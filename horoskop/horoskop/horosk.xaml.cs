@@ -13,11 +13,11 @@ namespace horoskop
 	public partial class horosk : ContentPage
 	{
 		DatePicker dateP;
-		Editor edi;
+		Editor edi,sign;
 		Image img;
+		DateTime aries = new DateTime(21 / 03);
+		DateTime ariesend = new DateTime(19 / 04);
 		System.DateTime moment = new System.DateTime();
-		int month = Value.Date.Day;
-		int day = DateTime.Now.Day;
 		public horosk()
 		{
 			dateP = new DatePicker
@@ -34,21 +34,31 @@ namespace horoskop
 				IsReadOnly = true
 			};
 			dateP.DateSelected += DateP_DateSelected;
-			StackLayout stack = new StackLayout { Children = {dateP, edi } };
+			StackLayout stack = new StackLayout { Children = {dateP, edi} };
 			this.Content = stack;
 		}
 
 		private void DateP_DateSelected(object sender, DateChangedEventArgs e)
 		{
-			if (month >= 3 && day >= 21 && month <= 4 && day <= 19)
+
+			if (e.NewDate.Month>=3 && e.NewDate.Day <= 21 && e.NewDate.Month<=4 && e.NewDate.Day <= 19)
+			{
+				edi.Text = "asfdsadfdsf";
+			}
+			/*
+
+			if (e.NewDate>=aries && e.NewDate<=ariesend)
 			{
 				edi.Text = "Aries";
 			}
-			else if (month >= 4 && day >= 20 && month <= 5 && day <= 20)
+
+			edi.Text = e.NewDate.ToString("dd/MM");
+			if (edi.Text>=("21/03"))
 			{
-				edi.Text = "Taurus";
-			}
-			//edi.Text = e.NewDate.ToString("dd/MM/yyyy");
+				edi.Text = "Aries";
+			}*/
+			//edi.Text = e.NewDate.ToString("dd/MM");
+			
 		}
 	}
 }
